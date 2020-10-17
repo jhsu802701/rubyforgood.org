@@ -1,0 +1,13 @@
+#!/bin/bash
+
+cp Dockerfile-template Dockerfile
+
+# BEGIN: changing the Dockerfile
+STR1='RUBY_VERSION'
+STR2=$(cat .ruby-version)
+
+sed -i.bak "s|$STR1|$STR2|g" Dockerfile
+rm Dockerfile.bak
+# END: changing the Dockerfile
+
+docker-compose build
